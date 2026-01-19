@@ -1,0 +1,25 @@
+# Core AI Framework
+crewai==0.80.0
+crewai-tools==0.12.1
+
+# LLM Integration
+anthropic==0.39.0
+langchain==0.3.12
+langchain-anthropic==0.3.3
+langchain-community==0.3.12
+
+# Web Search & Scraping
+duckduckgo-search==6.3.5
+requests==2.32.3
+beautifulsoup4==4.12.3
+
+# CLI & Output Formatting
+rich==13.9.4
+click==8.1.7
+
+# Environment & Configuration
+python-dotenv==1.0.1
+
+# Utilities
+pydantic==2.10.5
+pydantic-settings==2.7.0
