@@ -17,20 +17,20 @@ console = Console()
 def print_header():
     """Print application header."""
     header = """
-    ╔═══════════════════════════════════════════════════════════╗
-    ║                                                           ║
-    ║        LinkedIn AI Post Generator Agent 🤖               ║
-    ║        Autonomous Multi-Agent Content Creation           ║
-    ║                                                           ║
-    ╚═══════════════════════════════════════════════════════════╝
+    ===========================================================
+
+        LinkedIn AI Post Generator Agent
+        Autonomous Multi-Agent Content Creation
+
+    ===========================================================
     """
     console.print(header, style="bold cyan")
 
 
-def print_section(title: str, emoji: str = "🔍"):
+def print_section(title: str, emoji: str = ">"):
     """Print a section header."""
     console.print(f"\n{emoji} [bold blue]{title}[/bold blue]")
-    console.print("─" * 60, style="dim")
+    console.print("-" * 60, style="dim")
 
 
 def print_step(step_number: int, total_steps: int, description: str):
@@ -45,7 +45,7 @@ def print_agent_thinking(agent_name: str, thought: str):
     console.print(
         Panel(
             thought,
-            title=f"💭 {agent_name} is thinking...",
+            title=f"[*] {agent_name} is thinking...",
             border_style="yellow",
             box=box.ROUNDED
         )
@@ -54,27 +54,27 @@ def print_agent_thinking(agent_name: str, thought: str):
 
 def print_agent_action(agent_name: str, action: str):
     """Print agent's action."""
-    console.print(f"  → [cyan]{agent_name}:[/cyan] {action}")
+    console.print(f"  -> [cyan]{agent_name}:[/cyan] {action}")
 
 
 def print_success(message: str):
     """Print success message."""
-    console.print(f"✅ [green]{message}[/green]")
+    console.print(f"[OK] [green]{message}[/green]")
 
 
 def print_error(message: str):
     """Print error message."""
-    console.print(f"❌ [red]{message}[/red]")
+    console.print(f"[ERROR] [red]{message}[/red]")
 
 
 def print_warning(message: str):
     """Print warning message."""
-    console.print(f"⚠️  [yellow]{message}[/yellow]")
+    console.print(f"[WARN] [yellow]{message}[/yellow]")
 
 
 def print_info(message: str):
     """Print info message."""
-    console.print(f"ℹ️  [blue]{message}[/blue]")
+    console.print(f"[INFO] [blue]{message}[/blue]")
 
 
 def print_post_draft(draft: str, title: str = "LinkedIn Post Draft"):
@@ -82,9 +82,9 @@ def print_post_draft(draft: str, title: str = "LinkedIn Post Draft"):
     console.print(
         Panel(
             Markdown(draft),
-            title=f"📝 {title}",
+            title=f"[DRAFT] {title}",
             border_style="green",
-            box=box.DOUBLE
+            box=box.ROUNDED
         )
     )
 
@@ -94,7 +94,7 @@ def print_critique(critique: str):
     console.print(
         Panel(
             critique,
-            title="🔍 Content Critique",
+            title="[CRITIQUE] Content Critique",
             border_style="magenta",
             box=box.ROUNDED
         )
@@ -103,22 +103,22 @@ def print_critique(critique: str):
 
 def print_workflow_tree(current_step: str):
     """Print workflow progress tree."""
-    tree = Tree("🔄 [bold]Workflow Progress[/bold]")
+    tree = Tree("[bold]Workflow Progress[/bold]")
 
     steps = [
-        ("Research", "🔍"),
-        ("Analysis", "📊"),
-        ("Writing", "✍️"),
-        ("Critique", "🔍"),
-        ("Editing", "✨"),
-        ("Final", "🎯")
+        ("Research", "[R]"),
+        ("Analysis", "[A]"),
+        ("Writing", "[W]"),
+        ("Critique", "[C]"),
+        ("Editing", "[E]"),
+        ("Final", "[F]")
     ]
 
     for step, emoji in steps:
         if step.lower() in current_step.lower():
-            tree.add(f"{emoji} [bold yellow]{step}[/bold yellow] ← Current")
+            tree.add(f"{emoji} [bold yellow]{step}[/bold yellow] <- Current")
         elif steps.index((step, emoji)) < steps.index(next((s, e) for s, e in steps if s.lower() in current_step.lower())):
-            tree.add(f"{emoji} [green]{step}[/green] ✓")
+            tree.add(f"{emoji} [green]{step}[/green] [OK]")
         else:
             tree.add(f"{emoji} [dim]{step}[/dim]")
 
@@ -130,7 +130,7 @@ def print_iteration_summary(iteration: int, max_iterations: int):
     console.print(
         Panel(
             f"Iteration {iteration} of {max_iterations}",
-            title="🔄 Refinement Cycle",
+            title="[REFINEMENT] Refinement Cycle",
             border_style="blue"
         )
     )
@@ -151,18 +151,18 @@ def save_output(content: str, filename: str):
 def print_final_output(post: str, metadata: dict):
     """Print the final output with metadata."""
     console.print("\n")
-    console.print("═" * 70, style="bold green")
+    console.print("=" * 70, style="bold green")
     console.print(
         Panel(
             Markdown(post),
-            title="🎉 [bold green]Final LinkedIn Post[/bold green]",
+            title="[FINAL] Final LinkedIn Post",
             border_style="bold green",
-            box=box.DOUBLE_EDGE
+            box=box.ROUNDED
         )
     )
 
     # Print metadata table
-    table = Table(title="📊 Generation Metadata", box=box.SIMPLE)
+    table = Table(title="Generation Metadata", box=box.SIMPLE)
     table.add_column("Property", style="cyan")
     table.add_column("Value", style="green")
 
@@ -170,4 +170,4 @@ def print_final_output(post: str, metadata: dict):
         table.add_row(key, str(value))
 
     console.print(table)
-    console.print("═" * 70, style="bold green")
+    console.print("=" * 70, style="bold green")

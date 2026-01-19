@@ -82,7 +82,7 @@ def generate(topic: str, output_dir: str, iterations: int, show_thinking: bool):
         print_header()
 
         # Display configuration
-        print_section("⚙️ Configuration", "⚙️")
+        print_section("[CONFIG] Configuration", ">")
         print_info(f"Topic: {topic}")
         print_info(f"Max Iterations: {iterations}")
         print_info(f"Output Directory: {output_dir}")
@@ -129,7 +129,7 @@ def generate(topic: str, output_dir: str, iterations: int, show_thinking: bool):
 def examples():
     """Show example topics and use cases."""
     print_header()
-    print_section("📚 Example Topics", "📚")
+    print_section("[EXAMPLES] Example Topics", ">")
 
     examples_list = [
         ("AI & Machine Learning", [
@@ -175,7 +175,7 @@ def examples():
 def setup():
     """Guide through initial setup."""
     print_header()
-    print_section("🔧 Setup Guide", "🔧")
+    print_section("[SETUP] Setup Guide", ">")
 
     console.print("\n[bold]Step 1: Install Dependencies[/bold]")
     console.print("  pip install -r requirements.txt\n")
@@ -207,21 +207,21 @@ def info():
     """Display system information and agent details."""
     print_header()
 
-    print_section("🤖 Agent System Architecture", "🤖")
+    print_section("[AGENTS] Agent System Architecture", ">")
 
     agents = [
-        ("Research Agent", "🔍", "Performs multi-query web searches to gather comprehensive information"),
-        ("Analyst Agent", "📊", "Synthesizes research findings and identifies key insights"),
-        ("Writer Agent", "✍️", "Crafts engaging LinkedIn posts following best practices"),
-        ("Critic Agent", "🔍", "Evaluates content quality and provides detailed feedback"),
-        ("Editor Agent", "✨", "Refines posts based on critique to maximize impact")
+        ("Research Agent", "[R]", "Performs multi-query web searches to gather comprehensive information"),
+        ("Analyst Agent", "[A]", "Synthesizes research findings and identifies key insights"),
+        ("Writer Agent", "[W]", "Crafts engaging LinkedIn posts following best practices"),
+        ("Critic Agent", "[C]", "Evaluates content quality and provides detailed feedback"),
+        ("Editor Agent", "[E]", "Refines posts based on critique to maximize impact")
     ]
 
     for name, emoji, description in agents:
         console.print(f"\n{emoji} [bold cyan]{name}[/bold cyan]")
         console.print(f"   {description}")
 
-    print_section("🔄 Workflow Process", "🔄")
+    print_section("[WORKFLOW] Workflow Process", ">")
     workflow_steps = [
         "1. Research: Multi-query web search for current information",
         "2. Analysis: Identify trends, insights, and narrative angles",
@@ -236,7 +236,7 @@ def info():
 
     try:
         settings = get_settings()
-        print_section("⚙️ Current Configuration", "⚙️")
+        print_section("[CONFIG] Current Configuration", ">")
         console.print(f"  Model: {settings.model_name}")
         console.print(f"  Max Iterations: {settings.max_iterations}")
         console.print(f"  Search Queries: {settings.search_queries_count}")
