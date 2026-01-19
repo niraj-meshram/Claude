@@ -3,7 +3,7 @@
 from crewai import Agent
 from langchain_anthropic import ChatAnthropic
 from typing import List
-from ..tools.web_search import WebSearchTool, MultiQuerySearchTool
+from ..tools.web_search import web_search, multi_query_search
 from ..config import get_settings
 
 
@@ -39,7 +39,7 @@ def create_research_agent() -> Agent:
             "search queries and synthesizing results from multiple sources. You always "
             "search from multiple angles to ensure comprehensive coverage."
         ),
-        tools=[WebSearchTool(), MultiQuerySearchTool()],
+        tools=[web_search, multi_query_search],
         llm=create_llm(),
         verbose=True,
         allow_delegation=False,
