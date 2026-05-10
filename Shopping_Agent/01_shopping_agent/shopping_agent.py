@@ -5,7 +5,7 @@ import sqlite3
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain.tools import tool
-from langchain_anthropic import ChatAnthropic
+from langchain_openai import ChatOpenAI
 
 from reviews_api import get_product_rating
 
@@ -13,7 +13,7 @@ load_dotenv()
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "store.db")
 
-llm = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
+llm = ChatOpenAI(model="gpt-5.4", temperature=0)
 
 # ---------------------------------------------------------------------------
 # Tools
